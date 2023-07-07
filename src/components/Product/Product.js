@@ -14,6 +14,17 @@ const Product = props => {
   const prepareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   }
+  //console.log(prepareColorClassName)
+
+
+
+  const getPrice = () => {
+    const priceIndex = props.sizes.find(element => element.name === currentSize);
+    const price = props.basePrice + priceIndex.additionalPrice;
+    return price;
+  }
+
+
 
   return (
     <article className={styles.product}>
@@ -26,7 +37,7 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>{props.name}</h2>
-          <span className={styles.price}>{props.basePrice}</span>
+          <span className={styles.price}>{getPrice()}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
@@ -44,7 +55,7 @@ const Product = props => {
             <ul className={styles.choices}>
               {props.colors.map(item =>
                 <li key={item}>
-                  <button  type="button" onClick={() => setCurrentColor(item)} className={clsx(prepareColorClassName(item), item === currentColor && styles.active)} />
+                  <button type="button" onClick={() => setCurrentColor(item)} className={clsx(prepareColorClassName(item), item === currentColor && styles.active)} />
                 </li>
               )}
               {/* <li><button type="button" className={clsx(styles.colorBlue, styles.active)} /></li>
@@ -64,7 +75,6 @@ const Product = props => {
 Product.propTypes = {
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  //image: PropTypes.string.isRequired,
   basePrice: PropTypes.number.isRequired,
   colors: PropTypes.array.isRequired,
   sizes: PropTypes.array.isRequired
