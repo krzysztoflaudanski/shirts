@@ -7,24 +7,28 @@ import { useState, useEffect } from 'react';
 const Product = props => {
 
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
-  //console.log(currentColor);
+ 
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name)
-  //console.log(currentSize);
-
+  
   const prepareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   }
-  //console.log(prepareColorClassName)
-
-
-
+  
   const getPrice = () => {
     const priceIndex = props.sizes.find(element => element.name === currentSize);
     const price = props.basePrice + priceIndex.additionalPrice;
     return price;
   }
 
-
+  function summary(e) {
+    e.preventDefault();
+   console.log('Summary');
+   console.log('==============');
+   console.log('Name:', props.name,'shirt');
+   console.log('Price:', getPrice());
+   console.log('Size:', currentSize);
+   console.log('Color:', currentColor);
+  }
 
   return (
     <article className={styles.product}>
@@ -63,7 +67,7 @@ const Product = props => {
               <li><button type="button" className={clsx(styles.colorWhite)} /></li> */}
             </ul>
           </div>
-          <Button className={styles.button}>
+          <Button className={styles.button} onClick={summary}>
             <span className="fa fa-shopping-cart" />
           </Button>
         </form>
