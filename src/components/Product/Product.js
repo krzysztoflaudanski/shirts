@@ -23,7 +23,7 @@ const Product = props => {
     return price;
   }
 
-  function summary(e) {
+  const summary = (e) => {
     e.preventDefault();
    console.log('Summary');
    console.log('==============');
