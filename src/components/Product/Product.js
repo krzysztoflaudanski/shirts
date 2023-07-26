@@ -14,7 +14,12 @@ const Product = props => {
     const priceIndex = props.sizes.find(element => element.name === currentSize);
     const price = props.basePrice + priceIndex.additionalPrice;
     return price;
-  }, [props.basePrice, props.sizes, currentSize,])
+  }, [props.basePrice, props.sizes, currentSize])
+
+  const sizeName = []
+  for (let item of props.sizes){
+      sizeName.push(item.name)
+  }
 
   const summary = (e) => {
     e.preventDefault();
@@ -30,8 +35,8 @@ const Product = props => {
     <article className={styles.product}>
 
       <ProductImage name={props.name} color={currentColor} />
-      <ProductForm getPrice={getPrice} setCurrentSize={setCurrentSize} currentSize={currentSize} setCurrentColor={setCurrentColor}
-        currentColor={currentColor} summary={summary} sizes={props.sizes} colors={props.colors} title={props.title}/>
+      <ProductForm price={getPrice} setCurrentSize={setCurrentSize} currentSize={currentSize} setCurrentColor={setCurrentColor}
+        currentColor={currentColor} summary={summary} sizes={props.sizes} colors={props.colors} title={props.title} sizeName={sizeName}/>
     </article>
   )
 };

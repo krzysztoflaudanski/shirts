@@ -10,10 +10,10 @@ const ProductForm = (props) => {
         <div>
             <header>
                 <h2 className={styles.name}>{props.title}</h2>
-                <span className={styles.price}>{props.getPrice}$</span>
+                <span className={styles.price}>{props.price}$</span>
             </header>
             <form>
-                <OptionSize sizes={props.sizes} setCurrentSize={props.setCurrentSize} currentSize={props.currentSize} />
+                <OptionSize setCurrentSize={props.setCurrentSize} currentSize={props.currentSize} sizeName={props.sizeName}/>
                 <OptionColor colors={props.colors} setCurrentColor={props.setCurrentColor} prepareColorClassName={props.prepareColorClassName} currentColor={props.currentColor} />
                 <Button className={styles.button} onClick={props.summary}>
                     <span className="fa fa-shopping-cart" />
@@ -24,14 +24,12 @@ const ProductForm = (props) => {
 }
 
 ProductForm.propTypes = {
-    getPrice: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     currentColor: PropTypes.string.isRequired,
     setCurrentColor: PropTypes.func.isRequired,
-    sizes: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-    })).isRequired,
+    sizeName: PropTypes.array.isRequired,
     currentSize: PropTypes.string.isRequired,
     setCurrentSize: PropTypes.func.isRequired,
 }
