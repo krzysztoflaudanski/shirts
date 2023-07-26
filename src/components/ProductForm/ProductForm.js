@@ -29,7 +29,7 @@ ProductForm.propTypes = {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     currentColor: PropTypes.string.isRequired,
     setCurrentColor: PropTypes.func.isRequired,
-    sizeName: PropTypes.array.isRequired,
+    sizeName: PropTypes.arrayOf(PropTypes.string).isRequired,
     currentSize: PropTypes.string.isRequired,
     setCurrentSize: PropTypes.func.isRequired,
 }
